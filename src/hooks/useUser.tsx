@@ -1,15 +1,22 @@
-import { useState, useEffect } from "react";
-import { User } from "../Types/user";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../Context/UserContext";
+
 export const useUser = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const context = useContext(UserContext);
+
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+
+  const { user, setUser } = context; 
 
   useEffect(() => {
-    // Check if there's a user in localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Set user from localStorage if available
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
     }
-  }, []);
+  }, [user]); 
 
-  return { user, setUser };
+  return { user, setUser }; 
 };
