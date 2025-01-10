@@ -227,7 +227,7 @@ export default function ListViewTasks() {
           </div>
         </div>
       </div>
-      {filteredTasks.length === 0 ? (
+      {tasks.length > 0 && filteredTasks.length === 0 ? (
         <img
           className="flex flex-row items-center w-80 mx-auto"
           src={result_not_found_icon}

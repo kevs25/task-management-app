@@ -7,7 +7,8 @@ import { useEffect } from "react";
 export default function Home() {
   const { user } = useUser();
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
+  console.log("user in home",user); 
   useEffect(() => {
     if (!user) {
       navigate("/");  

@@ -173,41 +173,42 @@ export default function BoardViewTasks() {
         </div>
       </div>
       <div className="my-8">
-        {filteredTasks.length === 0 && (
+        {tasks.length > 0 && filteredTasks.length === 0 ? (
           <img
             className="flex flex-row items-center w-80 mx-auto"
             src={result_not_found_icon}
             alt="Result not found"
           />
+        ) : (
+          <div className="grid grid-cols-3 gap-4 touch-none">
+            <DndContext
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+              sensors={sensors}
+            >
+              <TaskSection
+                title="TO-DO"
+                tasks={todoTasks}
+                style="bg-pink-200 text-pink-900 w-20"
+                id="TO-DO"
+              />
+
+              <TaskSection
+                title="IN-PROGRESS"
+                tasks={inProgressTasks}
+                style="bg-blue-200 text-blue-900 w-32"
+                id="IN-PROGRESS"
+              />
+
+              <TaskSection
+                title="COMPLETED"
+                tasks={completedTasks}
+                style="bg-green-200 text-green-900 w-28"
+                id="COMPLETED"
+              />
+            </DndContext>
+          </div>
         )}
-        <div className="grid grid-cols-3 gap-4 touch-none">
-          <DndContext
-            collisionDetection={closestCenter}
-            onDragEnd={handleDragEnd}
-            sensors={sensors}
-          >
-            <TaskSection
-              title="TO-DO"
-              tasks={todoTasks}
-              style="bg-pink-200 text-pink-900 w-20"
-              id="TO-DO"
-            />
-
-            <TaskSection
-              title="IN-PROGRESS"
-              tasks={inProgressTasks}
-              style="bg-blue-200 text-blue-900 w-32"
-              id="IN-PROGRESS"
-            />
-
-            <TaskSection
-              title="COMPLETED"
-              tasks={completedTasks}
-              style="bg-green-200 text-green-900 w-28"
-              id="COMPLETED"
-            />
-          </DndContext>
-        </div>
       </div>
     </>
   );

@@ -95,41 +95,34 @@ const TaskSection = ({
       console.error("User is not logged in");
       return;
     }
-
-    if (taskId instanceof Set) {
-      try {
-        for (const id of taskId) {
-          await deleteDoc(doc(db, "users", user.uid, "tasks", id)); 
-          setSelectedTasks((prev) => {
-            const updated = new Set(prev);
-            updated.delete(id); 
-            return updated;
-          });
-        }
-      } catch (error) {
-        console.error("Error deleting tasks:", error);
+  
+    try {
+      if (taskId instanceof Set) {
+        // Deleting multiple tasks
+        const deletePromises = Array.from(taskId).map((id) =>
+          deleteDoc(doc(db, "users", user.uid, "tasks", id))
+        );
+        await Promise.all(deletePromises); // Batch delete tasks
+  
+        // Clear selected tasks after deletion
+        setSelectedTasks(new Set());
+      } else {
+        // Deleting a single task
+        await deleteDoc(doc(db, "users", user.uid, "tasks", taskId)); // Single task delete
+        setSelectedTasks(new Set()); // Clear selected tasks
       }
-    } else {
-      // If a single taskId is passed
-      try {
-        await deleteDoc(doc(db, "users", user.uid, "tasks", taskId)); // Use the single task ID
-        setSelectedTasks((prev) => {
-          const updated = new Set(prev);
-          updated.delete(taskId); // Remove the deleted task ID
-          return updated;
-        });
-      } catch (error) {
-        console.error("Error deleting task:", error);
-      }
+    } catch (error) {
+      console.error("Error deleting tasks:", error);
     }
   };
+  
 
   const handleStatusChange = async (newStatus: string) => {
     if (!user) {
       console.error("User is not logged in");
       return;
     }
-  
+
     try {
       const updates = Array.from(selectedTasks).map((taskId) =>
         updateDoc(doc(db, "users", user.uid, "tasks", taskId), {
@@ -137,13 +130,12 @@ const TaskSection = ({
         })
       );
       await Promise.all(updates);
-      setSelectedTasks(new Set()); 
-      setIsModalOpen(false); 
+      setSelectedTasks(new Set());
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error updating task status:", error);
     }
   };
-  
 
   return (
     <div className="mb-4" ref={setNodeRef}>
@@ -179,9 +171,13 @@ const TaskSection = ({
               </div>
             )}
 
-            {tasks.length > 0 ? (
+            {tasks.length === 0 ? (
+              <div className="text-center text-gray-500">
+                No Tasks in {title}
+              </div>
+            ) : (
               <SortableContext
-                items={tasks.map((task) => task.id)} // Change this to pass just IDs
+                items={tasks.map((task) => task.id)} // Pass just IDs
                 strategy={verticalListSortingStrategy}
               >
                 {tasks.map((task) => (
@@ -196,8 +192,6 @@ const TaskSection = ({
                   />
                 ))}
               </SortableContext>
-            ) : (
-              <div className="text-center text-gray-500">No Tasks</div>
             )}
           </div>
         )}
