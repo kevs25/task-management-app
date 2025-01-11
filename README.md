@@ -1,50 +1,80 @@
-# React + TypeScript + Vite
+# Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Task Management App built with React, Firebase, and TypeScript to help users manage their tasks efficiently. The app supports features like adding tasks, editing tasks, bulk deletion, and changing task statuses. It leverages Firebase for backend operations and state management to ensure smooth user interactions.
 
-Currently, two official plugins are available:
+# Deployment URL: https://your-task-management.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Add Tasks**: Users can create new tasks under specific sections.
+- **Edit TasksDeleteTasks**: Modify the details of existing tasks.
+- **Bulk Operations**: Select multiple tasks to delete or update their status at once.
+- **Drag and Drop**: Reorganize tasks using a drag-and-drop interface.
+- **Firebase Integration**: Tasks are stored and managed using Firebase Firestore.
+- **User Authentication**: Secure access for each user to manage their own tasks.
+- **Fitlering** : Filter tasks by searching the title, using category work or personal, filter by date
+- **Sorting** : Sort task by due date (ascending or descending)
+- **List View** : Users can view the task as in list view with drag and drop functionality
+- **Board View** : Users can view the task in board view (Kanban-style)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**:
+  - React
+  - TypeScript
+  - Tailwind CSS (for styling)
+  - DnD Kit (for drag-and-drop functionality)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Backend**:
+  - Firebase Firestore (for database management)
+  - Firebase Authentication
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Make sure you have the following installed:
+
+- Node.js (>=16.x)
+- npm or yarn
+- Firebase account with Firestore and Authentication enabled
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/task-management-app.git
+   cd task-management-app
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up Firebase:
+   - Go to the [Firebase Console](https://console.firebase.google.com/).
+   - Create a new project.
+   - Enable Firestore and Authentication.
+   - Copy the Firebase configuration.
+
+4. Create a `.env` file in the root directory and add the following:
+   ```env
+   REACT_APP_FIREBASE_API_KEY=your-api-key
+   REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
+   ```
+
+5. Start the development server:
+   ```bash
+   npm start
+   # or
+   yarn start
+   ```
+
+6. Open the app in your browser:
+   ```
+   http://localhost:3000
+   ```
+
