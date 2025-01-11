@@ -1,9 +1,10 @@
+//This file handles the drop down event of each task to edit or delete the task
 import { useState } from "react";
 import { Edit, Trash2, MoreHorizontal } from "lucide-react";
 
 interface DropdownProps {
-  onEdit: (event: React.MouseEvent) => void; // Pass MouseEvent to handle event control
-  onDelete: (event: React.MouseEvent) => void; // Pass MouseEvent
+  onEdit: (event: React.MouseEvent) => void; 
+  onDelete: (event: React.MouseEvent) => void; 
 }
 
 

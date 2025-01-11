@@ -7,7 +7,6 @@ interface UserProviderProps {
 }
 
 export function UserProvider({ children }: UserProviderProps) {
-  // Initialize user state by checking localStorage
   const [user, setUser] = useState<User | null>(() => {
     if (typeof window !== "undefined") {
       const storedUser = localStorage.getItem("user");
@@ -17,7 +16,6 @@ export function UserProvider({ children }: UserProviderProps) {
   });
 
   useEffect(() => {
-    // When user state changes, update localStorage
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
     } else {

@@ -1,3 +1,5 @@
+//this file hsndles switching between task views and logout option
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -24,10 +26,8 @@ export interface Props {
 export default function NavBar(props: Props) {
   const navigate = useNavigate();
 
-  // State for toggling views
   const [view, setView] = useState<"list" | "board">("list");
 
-  // Logout handler
   const handleLogout = async () => {
     await logout();
     localStorage.removeItem("user");
@@ -37,9 +37,7 @@ export default function NavBar(props: Props) {
   return (
     <>
       <GlobalStyle />
-      {/* Navigation Bar */}
       <div className="flex flex-wrap justify-between p-2">
-        {/* Logo */}
         <h1 className="text-2xl font-semibold text-gray-950 flex items-center mb-4">
           <span className="mr-2">
             <img
@@ -92,7 +90,6 @@ export default function NavBar(props: Props) {
         </div>
       </div>
 
-      {/* View Toggle Buttons */}
       <div className="hidden md:inline-block">
         <div className="flex gap-4 p-4">
           <button
@@ -116,7 +113,6 @@ export default function NavBar(props: Props) {
         </div>
       </div>
 
-      {/* Dynamic Content Based on View */}
       <div className="p-4 max-md:p-1">
         {view === "list" ? (
           // List View

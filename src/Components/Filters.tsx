@@ -1,3 +1,4 @@
+// This file handles filtering of tasks by category and due date
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,14 +17,14 @@ export default function Filters({ onSelect, onDateRangeSelect }: FilterProps) {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     const value = event.target.value;
-    onSelect(value); // Pass the selected category to the parent
+    onSelect(value); 
   };
 
   const handleDateRangeChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-    onDateRangeSelect(start, end); // Pass the selected date range to the parent
+    onDateRangeSelect(start, end); 
   };
 
   return (

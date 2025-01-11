@@ -1,3 +1,6 @@
+//This file reads the task, pass it down to task section component to view the tasks by each section and also handles drag and drop functionality
+//Also handles sorting based on due dates and search by title filter
+
 import { useEffect, useMemo, useState } from "react";
 import TaskSection from "./TaskSection";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
@@ -151,11 +154,9 @@ export default function ListViewTasks() {
       const newStatus = overContainer as TaskStatus;
 
       try {
-        // Update task status for the correct user
         const taskRef = doc(db, "users", user.uid, "tasks", String(taskId));
         await updateDoc(taskRef, { status: newStatus });
 
-        // Update the local state to reflect the new status
         setTasks((prevTasks) =>
           prevTasks.map((task) =>
             task.id === taskId ? { ...task, status: newStatus } : task
@@ -203,13 +204,13 @@ export default function ListViewTasks() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100, // Delay before activation (ms)
-        tolerance: 5, // Movement tolerance before activation
+        delay: 100, 
+        tolerance: 5, 
       },
     }),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates, // Custom coordinate getter for sortable lists
+      coordinateGetter: sortableKeyboardCoordinates, 
     })
   );
 

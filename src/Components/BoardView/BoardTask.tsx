@@ -1,3 +1,4 @@
+//This file handles the board view tasks for each section based on the status with a task drop down to update and delete
 import { useSortable } from "@dnd-kit/sortable";
 import { Task } from "../../Types/task";
 import formatDate from "../../Utils/DateFormat";

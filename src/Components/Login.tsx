@@ -1,3 +1,4 @@
+// this file handles the login for the app using firebase google sign-in
 import { useNavigate } from "react-router-dom";
 import { signInWithGoogle } from "../FireBaseConfig";
 import tasks from "../assets/task.svg";
@@ -23,7 +24,6 @@ export default function Login() {
         photoURL: userCredential.photoURL,
         uid: userCredential.uid,
       };
-      // Save user data to localStorage
       localStorage.setItem("user", JSON.stringify(userData));
       setUser(userData); // Set the user state
 

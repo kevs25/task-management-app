@@ -1,3 +1,4 @@
+//This is home component which wraps up all the component
 import { useLocation, useNavigate } from "react-router-dom";
 
 import NavBar from "./NavBar";

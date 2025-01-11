@@ -1,3 +1,4 @@
+//this file handles task updation and deletion and a sortable context which sorts the tasks.
 import { ChevronDown, ChevronUp, Plus } from "lucide-react";
 import { Task } from "../../Types/task";
 import TaskForm from "./TaskForm";
@@ -98,18 +99,15 @@ const TaskSection = ({
   
     try {
       if (taskId instanceof Set) {
-        // Deleting multiple tasks
         const deletePromises = Array.from(taskId).map((id) =>
           deleteDoc(doc(db, "users", user.uid, "tasks", id))
         );
-        await Promise.all(deletePromises); // Batch delete tasks
+        await Promise.all(deletePromises); 
   
-        // Clear selected tasks after deletion
         setSelectedTasks(new Set());
       } else {
-        // Deleting a single task
-        await deleteDoc(doc(db, "users", user.uid, "tasks", taskId)); // Single task delete
-        setSelectedTasks(new Set()); // Clear selected tasks
+        await deleteDoc(doc(db, "users", user.uid, "tasks", taskId)); 
+        setSelectedTasks(new Set()); 
       }
     } catch (error) {
       console.error("Error deleting tasks:", error);

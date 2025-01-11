@@ -1,3 +1,4 @@
+//this file handles a create task modal to create a new task
 import { useState } from "react";
 import Modal from "react-modal";
 import TextEditor from "./TextEditor";
@@ -63,7 +64,6 @@ export default function AddTask() {
     };
 
     try {
-      // Ensure userId is a string and correct Firestore reference
       const userTasksCollectionRef = collection(db, "users", user.uid, "tasks");
       const newTaskRef = await addDoc(userTasksCollectionRef, taskData);
       console.log("Task added with ID:", newTaskRef.id);

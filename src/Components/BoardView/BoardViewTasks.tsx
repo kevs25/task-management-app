@@ -1,5 +1,5 @@
+//This file reads the task, pass it down to task section component to view the tasks by each section and also handles drag and drop functionality
 import { useEffect, useState } from "react";
-// import TaskSection from "./TaskSection";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { Task, TaskStatus } from "../../Types/task";
 import { db } from "../../FireBaseConfig";
@@ -143,13 +143,13 @@ export default function BoardViewTasks() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        delay: 100, // Delay before activation (ms)
-        tolerance: 5, // Movement tolerance before activation
+        delay: 100, 
+        tolerance: 5, 
       },
     }),
     useSensor(TouchSensor),
     useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates, // Custom coordinate getter for sortable lists
+      coordinateGetter: sortableKeyboardCoordinates, 
     })
   );
 

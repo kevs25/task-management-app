@@ -1,3 +1,4 @@
+//this file handles a edit task modal to edit a new task
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import TextEditor from "./TextEditor";
@@ -66,7 +67,6 @@ export default function EditTask({
     }
   
     try {
-      // Assuming `uploadedFile` is the uploaded file(s)
       const fileReferences = createFileReferences(uploadedFile);
   
       const taskData = {
@@ -79,11 +79,10 @@ export default function EditTask({
         updatedAt: new Date(),
       };
   
-      // Update the task in the correct user's task collection
-      const taskRef = doc(db, "users", user.uid, "tasks", task.id); // Use the correct path
+      const taskRef = doc(db, "users", user.uid, "tasks", task.id); 
       await updateDoc(taskRef, taskData);
       
-      onClose(); // Close the modal or reset UI after updating
+      onClose(); 
     } catch (error) {
       console.error("Error updating task: ", error);
     }

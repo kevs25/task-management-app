@@ -1,3 +1,4 @@
+//This file handles the list view tasks for each section based on the status with a task drop down to update and delete
 import drag_icon from "../../assets/drag_icon.svg";
 import checkMark from "../../assets/checkmark.svg";
 import completed_checkmark from "../../assets/completed_checkmark.svg";

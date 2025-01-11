@@ -1,3 +1,4 @@
+//this file contains to file status updation Modal for the selected task and multiselect modal component which allows user to select multiple task in a section either to update status or delete task.
 import { useState } from "react";
 import Modal from "react-modal"; // Import react-modal
 import close_icon from "../../assets/close_icon.svg";
@@ -30,7 +31,7 @@ const StatusModal = ({
       isOpen={isOpen}
       onRequestClose={onClose}
       ariaHideApp={false}
-      overlayClassName="fixed inset-0 bg-transparent" // Transparent overlay
+      overlayClassName="fixed inset-0 bg-transparent" 
       className="absolute bg-black rounded-lg w-40 z-20 shadow-lg"
       style={{
         content: {

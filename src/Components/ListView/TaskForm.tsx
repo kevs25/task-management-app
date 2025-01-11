@@ -1,3 +1,4 @@
+//This file handles the form to add a new task
 import { useState } from "react";
 import { Plus, Calendar } from "lucide-react";
 import { addDoc, collection } from "firebase/firestore";
@@ -39,8 +40,8 @@ const TaskForm = ({ onClose }: TaskFormProps) => {
           ...formData,
           dueDate: formData.dueDate ? format(formData.dueDate, "MMM dd, yyyy") : null,
           createdAt: format(new Date(), "MMM dd, yyyy"),
-          userId: user.uid,  // Add user ID
-          userDisplayName: user.displayName,  // Add user display name
+          userId: user.uid,  
+          userDisplayName: user.displayName, 
         });
         onClose();
       } else {
@@ -54,7 +55,7 @@ const TaskForm = ({ onClose }: TaskFormProps) => {
   const handleDateChange = (date: Date | null) => {
     setFormData((prev) => ({
       ...prev,
-      dueDate: date, // Update the state with the selected date
+      dueDate: date,
     }));
   };
 

@@ -1,3 +1,4 @@
+//this file handles task updation and deletion and a sortable context which sorts the tasks.
 import { useState } from "react";
 import { deleteDoc, doc } from "firebase/firestore";
 import { Task } from "../../Types/task";
@@ -39,7 +40,6 @@ export default function TaskSection({ title, tasks, style, id }: TaskSectionProp
     }
   
     try {
-      // Delete the task for the specific user
       await deleteDoc(doc(db, "users", user.uid, "tasks", taskId));
       console.log("Task deleted successfully");
     } catch (error) {
@@ -58,7 +58,7 @@ export default function TaskSection({ title, tasks, style, id }: TaskSectionProp
         </div>
         {tasks.length > 0 ? (
           <SortableContext
-            items={tasks.map((task) => task.id)} // Change this to pass just IDs
+            items={tasks.map((task) => task.id)} 
             strategy={rectSortingStrategy}
           >
             {tasks.map((task) => (
