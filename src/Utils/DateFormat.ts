@@ -1,4 +1,4 @@
-const formatDate = (date: null | Date): string => {
+const formatDate = (date: null | Date | string): string => {
     if (!date) return "";
     try {
       const dateObj = date instanceof Date ? date : new Date(date);
