@@ -1,7 +1,7 @@
 //this file contains to file status updation Modal for the selected task and multiselect modal component which allows user to select multiple task in a section either to update status or delete task.
 import { useState } from "react";
 import Modal from "react-modal"; // Import react-modal
-import close_icon from "../../assets/close_icon.svg";
+import close_icon from "../../assets/Close Icon.svg";
 import task_icon from "../../assets/tasks_icon.svg";
 
 interface MultiSelectProps {
